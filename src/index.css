@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.gradient{
+    border-width: 4px;
+    border-style: solid ;
+    border-image: linear-gradient(190deg, #05f07a, #09ccd3);
+    border-image-slice: 1;
+    box-sizing: content-box;
+}
