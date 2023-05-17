@@ -10,7 +10,7 @@ const navData = [
   {
     id:2,
     name:"All Toys",
-    path:'/all-toyes'
+    path:'/all-toys'
   },
   {
     id:3,
