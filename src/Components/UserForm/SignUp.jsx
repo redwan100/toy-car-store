@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import img from "../../assets/images/login/login.svg";
-import { AuthContext } from "../../Context/ContextProvider";
+import img from "../../assets/login.svg";
+import { AuthContext } from "../../Context/AuthProvider";
+
 const SignUp = () => {
   const [error, setError] = useState("");
   const { createUser, loading } = useContext(AuthContext);

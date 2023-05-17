@@ -5,17 +5,14 @@ import Footer from '../Pages/Shared/Footer'
 
 const MainLayout = () => {
   return (
-    <div>
+    <div className='w-full min-h-screen flex gap-4 flex-col container mx-auto lg:w-[90%]'>
         <div>
             <Navbar />
         </div>
-       <div>
-       
-       </div>
         <div>
             <Outlet />
         </div>
-        <div>
+        <div className='mt-auto'>
             <Footer />
         </div>
     </div>

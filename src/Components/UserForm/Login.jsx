@@ -1,8 +1,9 @@
 import React, { useContext, useState } from "react";
-import img from "../../assets/images/login/login.svg";
+import img from '../../assets/login.svg'
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { AuthContext } from "../../Context/ContextProvider";
+
 import SocialLogin from "../../Pages/Shared/SocialLogin";
+import { AuthContext } from "../../Context/AuthProvider";
 
 const Login = () => {
   const { userSignIn } = useContext(AuthContext);
