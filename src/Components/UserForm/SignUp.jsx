@@ -14,6 +14,7 @@ const SignUp = () => {
     const username = form.name.value;
     const email = form.email.value;
     const password = form.password.value;
+    const photoUrl = form.photoUrl.value;
 
     createUser(email, password)
       .then((result) => {
@@ -73,6 +74,19 @@ const SignUp = () => {
                   name="password"
                 />
               </div>
+              
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Photo URL</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="photo url"
+                  className="input input-bordered"
+                  name="photoUrl"
+                />
+              </div>
+              
               <div className="form-control mt-6">
                 <button className="btn btn-primary">Register</button>
               </div>

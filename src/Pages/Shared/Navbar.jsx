@@ -1,46 +1,68 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link, NavLink } from 'react-router-dom';
+import {BiUserCircle} from 'react-icons/bi'
+import { FiLogOut } from "react-icons/fi";
+import { AuthContext } from '../../Context/AuthProvider';
 
-const navData = [
-  {
-    id:1,
-    name:"Home",
-    path:'/'
-  },
-  {
-    id:2,
-    name:"All Toys",
-    path:'/all-toys'
-  },
-  {
-    id:3,
-    name:"My Toys",
-    path:'/my-toys'
-  },
-  {
-    id:4,
-    name:"Add a Toys",
-    path:'/add-toy'
-  },
-  {
-    id:5,
-    name:"Blogs",
-    path:'/blogs'
-  },
-]
+
+const Links = ()=>{
+  const { user } = useContext(AuthContext);
+
+   return (
+     <>
+       <NavLink
+         to={"/"}
+         className={"font-medium text-xl text-gray-800 hover:text-[#05f07a]"}
+       >
+         Home
+       </NavLink>
+       <NavLink
+         to={"/all-toys"}
+         className={"font-medium text-xl text-gray-800 hover:text-[#05f07a]"}
+       >
+         All Toys
+       </NavLink>
+
+       {user && (
+         <NavLink
+           to={"/my-toys"}
+           className={"font-medium text-xl text-gray-800 hover:text-[#05f07a]"}
+         >
+           My Toys
+         </NavLink>
+       )}
+
+       {user && (
+         <NavLink
+           to={"/add-toy"}
+           className={"font-medium text-xl text-gray-800 hover:text-[#05f07a]"}
+         >
+           Add Toys
+         </NavLink>
+       )}
+
+       <NavLink
+         to={"/blogs"}
+         className={"font-medium text-xl text-gray-800 hover:text-[#05f07a]"}
+       >
+         Blogs
+       </NavLink>
+     </>
+   );
+}
+
 
 const Navbar = () => {
-  const link = navData.map((nav) => (
-    <NavLink
-      key={nav.id}
-      to={nav.path}
-      className={`font-medium text-xl text-gray-800 hover:text-[#05f07a]`}
-    >
-      {nav.name}
-    </NavLink>
-  ));
+ const { user, logOut } = useContext(AuthContext);
+ console.log(user);
+
+ const handleSingOut = () => {
+   logOut()
+     .then(() => {})
+     .catch((err) => console.log(err));
+ };
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar mx-auto lg:w-[90%]">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -63,18 +85,38 @@ const Navbar = () => {
             tabIndex={0}
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 space-y-4"
           >
-            {link}
+            {Links()}
           </ul>
         </div>
         <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 space-x-4">
-          {link}
-        </ul>
+        <ul className="menu menu-horizontal px-1 space-x-4">{Links()}</ul>
       </div>
       <div className="navbar-end">
-        <Link to={'/login'} className='gradient py-1 px-4 text-cyan-700 font-medium'>Login</Link>
+        {!user && (
+          <Link
+            to={"/login"}
+            className="gradient py-1 px-4 text-cyan-700 font-medium"
+          >
+            Login
+          </Link>
+        )}
+
+        <div>
+          {user && (
+            <div className="flex gap-1">
+              {user.photoUrl ? (
+                <div className="w-8 h-8 rounded-full">{user.photoUrl}</div>
+              ) : (
+                <BiUserCircle size={25} />
+              )}
+              <span className="flex items-center" onClick={handleSingOut}>
+                <FiLogOut size={25} cursor={"pointer"} />
+              </span>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

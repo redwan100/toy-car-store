@@ -11,3 +11,17 @@
     border-image-slice: 1;
     box-sizing: content-box;
 }
+.gradient-thin{
+    border-width: 2px;
+    border-style: solid ;
+    border-image: linear-gradient(190deg, #05f07a, #09ccd3);
+    border-image-slice: 1;
+    box-sizing: content-box;
+}
+
+
+.gradient-text {
+  background: -webkit-linear-gradient(#02ed78, #068084);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
