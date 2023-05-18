@@ -15,6 +15,7 @@ const Home = () => {
       <div className='py-20'>
         <Gallery />
       </div>
+
     </div>
   );
 }

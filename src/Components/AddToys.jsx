@@ -3,26 +3,10 @@ import { AuthContext } from "../Context/AuthProvider";
 import SectionTitle from "../Pages/Shared/SectionTitle";
 
 const AddToys = () => {
-    const [subcategory, setSubcategory] = useState([{
-      picture1:'',
-      picture2:'',
-    }]);
 
   const { user } = useContext(AuthContext);
 
 
-  const handleSubCategory = (event) => {
-    const name = event.target.name
-    const value = event.target.value
-
-    setSubcategory((prev) =>{
-      return{
-        ...prev,
-       [name]:value
-      }
-    })
-
-  };
 
   const handleForm = (event) =>{
     event.preventDefault();
@@ -35,16 +19,47 @@ const AddToys = () => {
     const rating = form.rating.value;
     const quantity = form.quantity.value;
     const description = form.description.value;
+    const subcatPhoto1 = form.picture1.value
+    const subcatPhoto2 = form.picture2.value
+
+
+    const toySubcategory = [
+      {toyName,
+      photoUrl,
+      price,
+      rating,
+      quantity,
+      description,
+      subcatPhoto1,
+      subcatPhoto2,}
+    ];
+
+     const toyInfo = {
+       sellerName,
+       sellerEmail,
+       toyName,
+       photoUrl,
+       price,
+       rating,
+       quantity,
+       description,
+       subcategory: toySubcategory,
+     };
+
+
+    fetch("http://localhost:5000/addToy",{
+      method: 'POST',
+      headers:{
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(toyInfo)
+    })
+    .then(res => res.json())
+    .then(data => console.log(data))
     
-    console.log(
-      {
-        sellerName,
-        subcategory
-      }
-    );
+    
   }
 
-  console.log(subcategory);
   return (
     <div className="hero min-h-screen py-9">
       <div className="w-full max-w-md shadow-2xl bg-base-100 gradient-thin">
@@ -151,23 +166,32 @@ const AddToys = () => {
           </div>
 
           <div>
-            <input
-              type="text"
-              placeholder="sub category"
-              onChange={handleSubCategory}
-              name="picture1"
-              
-            />
-            <input
-              type="text"
-              placeholder="sub category"
-              onChange={handleSubCategory}
-              name="picture2"
-            />
-           
+            <label className="label">
+              <span className="label-text"> Subcategory</span>
+            </label>
+            <div className="form-control mb-4">
+              <input
+                type="text"
+                placeholder="subcategory photo"
+                name="picture1"
+                className="input input-bordered input-success"
+              />
+            </div>
+
+            <div className="form-control">
+              <input
+                type="text"
+                placeholder="subcategory photo"
+                name="picture2"
+                className="input input-bordered input-success"
+              />
+            </div>
           </div>
           <div className="form-control mt-6">
-            <button className="bg-gradient py-3 text-lg font-semibold" type="submit"> 
+            <button
+              className="bg-gradient py-3 text-lg font-semibold"
+              type="submit"
+            >
               Add Toy
             </button>
           </div>
