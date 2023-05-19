@@ -4,12 +4,11 @@ import {BiTrashAlt} from 'react-icons/bi'
 
 const MyToysCard = ({
   toy,
-  handleData
+   handleDelete
 }) => {
   const { _id, sellerName, subcategoryName,toyName, price, quantity } = toy;
 
-  
-console.log(handleData);
+
   return (
     <tr>
       <td>{sellerName}</td>
@@ -29,7 +28,10 @@ console.log(handleData);
       </td>
 
       <td>
-        <p className="cursor-pointer text-red-400 hover:text-red-500">
+        <p
+          className="cursor-pointer text-red-400 hover:text-red-500"
+          onClick={() => handleDelete(_id)}
+        >
           <BiTrashAlt size={20} />
         </p>
       </td>
