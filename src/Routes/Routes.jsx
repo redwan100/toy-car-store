@@ -1,7 +1,7 @@
 import {createBrowserRouter} from 'react-router-dom'
 import MainLayout from '../Layouts/MainLayout'
 
-import MyToys from '../Components/MyToys'
+
 import AddToys from '../Components/AddToys'
 import Blogs from '../Components/Blogs'
 import Login from '../Components/UserForm/Login'
@@ -9,6 +9,8 @@ import SignUp from '../Components/UserForm/SignUp'
 import Home from '../Pages/Home/Home'
 import AllToys from '../Pages/AllToys'
 import ToyDetails from '../Components/AllToys/ToyDetails'
+import MyToys from '../Components/MyToys/MyToys'
+import ToysUpdate from '../Components/ToysUpdate'
 
 export const router = createBrowserRouter([
   {
@@ -32,6 +34,10 @@ export const router = createBrowserRouter([
       {
         path: "my-toys",
         element: <MyToys />,
+      },
+      {
+        path: "toys-update",
+        element: <ToysUpdate />,
       },
       {
         path: "add-toy",

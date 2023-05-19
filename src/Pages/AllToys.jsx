@@ -9,6 +9,8 @@ const AllToys = () => {
           .then((data) => setToys(data))
           .catch((err) => console.error(err));
       }, []);
+
+      
   return (
     <div className="overflow-x-auto w-full">
       <div className='my-4 pr-2'>
@@ -19,7 +21,7 @@ const AllToys = () => {
         <thead>
           <tr>
 
-            <th>Name</th>
+            <th>Seller Name</th>
             <th>Toy Name</th>
             <th>Sub-Category</th>
             <th>Price</th>

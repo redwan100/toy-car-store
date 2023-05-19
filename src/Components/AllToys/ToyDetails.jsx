@@ -1,4 +1,4 @@
-import {useLoaderData, useParams,Link, useNavigate} from 'react-router-dom'
+import {useLoaderData, Link, useNavigate} from 'react-router-dom'
 import Rating from '../../Pages/Shared/Rating';
 
 const ToyDetails = () => {
@@ -8,12 +8,14 @@ const ToyDetails = () => {
   const navigate = useNavigate();
 
   const goBack = () => {
-    navigate(-1);
+    navigate(-1,{
+      replace:true
+    });
   };
 
   return (
     <>
-      <div className="card lg:card-side shadow-xl gradient-thin">
+      <div className="card lg:card-side shadow-xl gradient-thin my-8">
         <figure>
           <img src={photoUrl} alt="Album" />
         </figure>
