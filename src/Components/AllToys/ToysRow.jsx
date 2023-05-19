@@ -3,28 +3,20 @@ import { Link } from 'react-router-dom';
 
 const ToysRow = ({toy}) => {
   const {_id,sellerName, toyName, subcategory, price, quantity} = toy;
-  const {photo1, photo2} = subcategory[0]
+  const {subcatPhoto1,  subcatPhoto2} = subcategory[0]
   return (
     <tr>
-      <th>
-        <label>
-          <input type="checkbox" className="checkbox" />
-        </label>
-      </th>
       <td>
 
         {sellerName}
       </td>
-      <td>
+      <td className=''>
 
         {toyName}
       </td>
-      <td>
-        Zemlak, Daniel and Leannon
-        <br />
-        <span className="badge badge-ghost badge-sm">
-          Desktop Support Technician
-        </span>
+      <td className='space-y-2'>
+       <img src={subcatPhoto1} alt="" className='w-20 h-20 object-cover'/>
+       <img src={subcatPhoto2} alt="" className='w-20 h-20 object-cover'/>
       </td>
       <td>${price}</td>
       <td>{quantity}</td>

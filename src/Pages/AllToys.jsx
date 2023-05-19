@@ -18,11 +18,7 @@ const AllToys = () => {
         {/* head */}
         <thead>
           <tr>
-            <th>
-              <label>
-                <input type="checkbox" className="checkbox" />
-              </label>
-            </th>
+
             <th>Name</th>
             <th>Toy Name</th>
             <th>Sub-Category</th>

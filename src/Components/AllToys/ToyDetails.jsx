@@ -1,34 +1,50 @@
-import React from 'react'
-import {useLoaderData, useParams} from 'react-router-dom'
-const ToyDetails = () => {
- const {_id} = useLoaderData()
- 
-  return (
-    <div>
-      {/* The button to open modal */}
-      <label htmlFor="my-modal-5" className="btn">
-        open modal
-      </label>
+import {useLoaderData, useParams,Link, useNavigate} from 'react-router-dom'
+import Rating from '../../Pages/Shared/Rating';
 
-      {/* Put this part before </body> tag */}
-      <input type="checkbox" id="my-modal-5" className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box w-11/12 max-w-5xl">
-          <h3 className="font-bold text-lg">
-            Congratulations random Internet user!
-          </h3>
-          <p className="py-4">
-            You've been selected for a chance to get one year of subscription to
-            use Wikipedia for free!
-          </p>
-          <div className="modal-action">
-            <label htmlFor="my-modal-5" className="btn">
-              Yay!
-            </label>
+const ToyDetails = () => {
+ const { sellerName, sellerEmail, toyName, photoUrl, price, rating, quantity,description} = useLoaderData()
+
+
+  const navigate = useNavigate();
+
+  const goBack = () => {
+    navigate(-1);
+  };
+
+  return (
+    <>
+      <div className="card lg:card-side shadow-xl gradient-thin">
+        <figure>
+          <img src={photoUrl} alt="Album" />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title text-gray-800">Toy Name: {toyName}</h2>
+          <h2 className="card-title text-gray-800">
+            Seller Name: {sellerName}
+          </h2>
+          <h2 className="card-title text-gray-800">
+            Seller Email: {sellerEmail}
+          </h2>
+          <div className='text-gray-700'>
+            <p className="text-lg">Price: ${price}</p>
+            <p className="text-lg">Available Quantity: {quantity}</p>
+            <p className='text-lg'>Description:  {description}</p>
+            <p className="flex items-center text-lg">
+              Rating: <Rating rating={rating} count={rating} />({rating})
+            </p>
           </div>
         </div>
       </div>
-    </div>
+
+      <div className="mt-8">
+        <Link
+          className="bg-gradient py-2 px-4 rounded-md font-semibold"
+          onClick={goBack}
+        >
+          &#8656; Go Back
+        </Link>
+      </div>
+    </>
   );
 }
 
