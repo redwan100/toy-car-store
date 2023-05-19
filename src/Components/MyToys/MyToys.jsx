@@ -1,8 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../Context/AuthProvider';
 import MyToysCard from '../MyToysCard';
-
+import Loadings from '../../Pages/Shared/Loadings.jsx'
+import useDynamicTitle from '../../Hooks/useHook';
 const MyToys = () => {
+  useDynamicTitle('My Toys');
   const [data, setData] = useState({})
     const [showModal, setShowModal] = useState(true)
     const [loading, setLoading] = useState(true)
@@ -19,7 +21,7 @@ const MyToys = () => {
       }, [user]);
 
 
-      if(loading) return <p>Loading...</p>
+      if(loading) return <Loadings />
 
       const handleForm = (event, _id) => {
         event.preventDefault();

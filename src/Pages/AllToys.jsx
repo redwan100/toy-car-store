@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import ToysRow from '../Components/AllToys/ToysRow';
 
 const AllToys = () => {
+
       const [toys, setToys] = useState([]);
       useEffect(() => {
         fetch("http://localhost:5000/allToys")

@@ -19,19 +19,23 @@ const AddToys = () => {
     const rating = form.rating.value;
     const quantity = form.quantity.value;
     const description = form.description.value;
-    const subcatPhoto1 = form.picture1.value
-    const subcatPhoto2 = form.picture2.value
+    // const subcatPhoto1 = form.picture1.value
+    // const subcatPhoto2 = form.picture2.value
+    const subcategoryName = form.subcategoryName.value;
 
 
     const toySubcategory = [
-      {toyName,
+      {
+       subcategoryName, 
+      toyName,
       photoUrl,
       price,
       rating,
       quantity,
       description,
-      subcatPhoto1,
-      subcatPhoto2,}
+      // subcatPhoto1,
+      // subcatPhoto2,
+    }
     ];
 
      const toyInfo = {
@@ -43,6 +47,7 @@ const AddToys = () => {
        rating,
        quantity,
        description,
+       subcategoryName,
        subcategory: toySubcategory,
      };
 
@@ -172,6 +177,14 @@ const AddToys = () => {
             <div className="form-control mb-4">
               <input
                 type="text"
+                placeholder="Subcategory Name"
+                name="subcategoryName"
+                className="input input-bordered input-success"
+              />
+            </div>
+            {/* <div className="form-control mb-4">
+              <input
+                type="text"
                 placeholder="subcategory photo"
                 name="picture1"
                 className="input input-bordered input-success"
@@ -185,8 +198,10 @@ const AddToys = () => {
                 name="picture2"
                 className="input input-bordered input-success"
               />
-            </div>
+            </div> */}
+
           </div>
+          
           <div className="form-control mt-6">
             <button
               className="bg-gradient py-3 text-lg font-semibold"

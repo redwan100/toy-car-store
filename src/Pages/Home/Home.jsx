@@ -2,8 +2,12 @@ import React from 'react'
 import Slider from '../Slider'
 import CategoryTab from './Tab';
 import Gallery from './Gallery';
+import useDynamicTitle from '../../Hooks/useHook';
+
+
 
 const Home = () => {
+  useDynamicTitle('Home')
   return (
     <div className='space-y-5'>
       <div>
