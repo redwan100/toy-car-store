@@ -10,7 +10,7 @@ const Home = () => {
         <Slider />
       </div>
       <div>
-        <CategoryTab />
+        {/* <CategoryTab /> */}
       </div>
       <div className='py-20'>
         <Gallery />

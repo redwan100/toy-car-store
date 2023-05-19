@@ -11,11 +11,13 @@ import AllToys from '../Pages/AllToys'
 import ToyDetails from '../Components/AllToys/ToyDetails'
 import MyToys from '../Components/MyToys/MyToys'
 import ToysUpdate from '../Components/ToysUpdate'
+import Error from '../Pages/Error'
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement:<Error />,
     children: [
       {
         path: "/",

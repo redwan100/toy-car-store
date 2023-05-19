@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { AuthContext } from '../../Context/AuthProvider';
-import ToysRow from '../AllToys/ToysRow';
 import MyToysCard from '../MyToysCard';
 
 const MyToys = () => {
+  const [data, setData] = useState({})
+    const [showModal, setShowModal] = useState(true)
     const [loading, setLoading] = useState(true)
       const [toys, setToys] = useState([]);
       const {user} = useContext(AuthContext)
@@ -17,10 +18,41 @@ const MyToys = () => {
           .catch((err) => console.error(err));
       }, [user]);
 
-      console.log(toys);
 
       if(loading) return <p>Loading...</p>
-      
+
+      const handleForm = (event, _id) => {
+        event.preventDefault();
+        const form = event.target;
+
+        const price = form.price.value;
+        const quantity = form.quantity.value;
+        const description = form.description.value;
+
+        const toyInfo = {
+          price,
+          quantity,
+          description,
+        };
+
+        fetch(`http://localhost:5000/update/${_id}`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(toyInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => console.log(data));
+      };
+
+      const handleModal = (data) =>{
+        setData(data)
+        setShowModal(!showModal)
+      }
+
+      console.log(showModal,data);
+
   return (
     <div>
       <table className="table w-full">
@@ -39,7 +71,13 @@ const MyToys = () => {
         </thead>
         <tbody>
           {toys.map((toy) => (
-            <MyToysCard key={toy._id} {...toy} />
+            <MyToysCard
+              key={toy._id}
+              toy={toy}
+              setShowModal={setShowModal}
+              handleModal={handleModal}
+              data={data}
+            />
           ))}
         </tbody>
       </table>
