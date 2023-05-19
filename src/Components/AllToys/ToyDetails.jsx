@@ -13,24 +13,28 @@ const ToyDetails = () => {
     });
   };
 
+  
+
   return (
     <>
       <div className="card lg:card-side shadow-xl gradient-thin my-8">
         <figure>
           <img src={photoUrl} alt="Album" />
         </figure>
-        <div className="card-body">
-          <h2 className="card-title text-gray-800">Toy Name: {toyName}</h2>
-          <h2 className="card-title text-gray-800">
-            Seller Name: {sellerName}
-          </h2>
-          <h2 className="card-title text-gray-800">
-            Seller Email: {sellerEmail}
-          </h2>
-          <div className='text-gray-700'>
+        <div className="card-body space-y-4">
+          <div className='space-y-1'>
+            <h2 className="card-title text-gray-800">Toy Name: {toyName}</h2>
+            <h2 className="card-title text-gray-800">
+              Seller Name: {sellerName}
+            </h2>
+            <h2 className="card-title text-gray-800">
+              Seller Email: {sellerEmail}
+            </h2>
+          </div>
+          <div className="text-gray-700 space-y-2">
             <p className="text-lg">Price: ${price}</p>
             <p className="text-lg">Available Quantity: {quantity}</p>
-            <p className='text-lg'>Description:  {description}</p>
+            <p className="text-lg">Description: {description}</p>
             <p className="flex items-center text-lg">
               Rating: <Rating rating={rating} count={rating} />({rating})
             </p>

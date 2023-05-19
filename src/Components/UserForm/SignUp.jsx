@@ -1,7 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import img from "../../assets/login.svg";
 import { AuthContext } from "../../Context/AuthProvider";
+import Lottie from "lottie-react";
+import signInImg from '../../../public/login.json'
 
 const SignUp = () => {
   const [error, setError] = useState("");
@@ -30,12 +31,16 @@ const SignUp = () => {
   }
 
   return (
-    <div className="hero min-h-screen bg-base-200 py-12">
+    <div className="hero min-h-screen py-12 ">
       <div className="hero-content grid gap-8 sm:grid-cols-2 max-w-4xl">
         <div className="">
-          <img className="w-full h-full  object-cover" src={img} alt="" />
+          <Lottie
+            animationData={signInImg}
+            loop={true}
+            className="w-full h-full mx-auto"
+          />
         </div>
-        <div className="card shadow-2xl  bg-base-100">
+        <div className="card shadow-2xl  bg-gradient-shade gradient">
           <h1 className="text-5xl font-bold text-center py-4">Sign Up!</h1>
           <form onSubmit={handleSignUp}>
             <div className="card-body">
@@ -74,7 +79,7 @@ const SignUp = () => {
                   name="password"
                 />
               </div>
-              
+
               <div className="form-control">
                 <label className="label">
                   <span className="label-text">Photo URL</span>
@@ -86,15 +91,15 @@ const SignUp = () => {
                   name="photoUrl"
                 />
               </div>
-              
+
               <div className="form-control mt-6">
-                <button className="btn btn-primary">Register</button>
+                <button className="bg-gradient py-2 font-bold text-xl">Register</button>
               </div>
               {error && <p className="text-error font-medium">{error}</p>}
             </div>
             <p className="p-4 text-center">
               Already have an account?{" "}
-              <Link to="/login" className="text-red-500 hover:underline">
+              <Link to="/login" className="text-blue-500 hover:underline">
                 Login
               </Link>
             </p>

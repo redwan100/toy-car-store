@@ -20,16 +20,18 @@ const galleryItems = [
 const Gallery = () => {
   return (
     <>
-      <div className='py-9'>
-        <SectionTitle title="Gallery"/>
-      </div>
-      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-        {galleryItems.map((item, i) => (
-          <div className="gradient-thin" key={i}>
-            <img src={item} alt="" className="w-full h-full object-cover" />
-          </div>
-        ))}
-      </div>
+   
+        <div className="py-9">
+          <SectionTitle title="Gallery" />
+        </div>
+        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+          {galleryItems.map((item, i) => (
+            <div className="gradient-thin" key={i}>
+              <img src={item} alt="" className="w-full h-full object-cover" />
+            </div>
+          ))}
+        </div>
+
     </>
   );
 }

@@ -13,6 +13,7 @@ import MyToys from '../Components/MyToys/MyToys'
 import ToysUpdate from '../Components/ToysUpdate'
 import Error from '../Pages/Error'
 import UpdateToy from '../Components/UpdateToy'
+import PrivetRoute from '../PrivetRoutes/PrivetRoute'
 
 export const router = createBrowserRouter([
   {
@@ -30,7 +31,9 @@ export const router = createBrowserRouter([
       },
       {
         path: "toyDetails/:id",
-        element: <ToyDetails />,
+        element: <PrivetRoute>
+           <ToyDetails />
+        </PrivetRoute>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/toyDetails/${params.id}`),
       },

@@ -1,11 +1,13 @@
 
-import { useLoaderData } from "react-router-dom";
+import {  useLoaderData } from "react-router-dom";
 import SectionTitle from "../Pages/Shared/SectionTitle";
+import Swal from "sweetalert2";
 
 const ToysUpdate = () => {
   const data = useLoaderData()
   const { _id, price, quantity, description } = data;
- console.log('from', _id);
+ 
+
  const handleUpdate = (event) => {
    event.preventDefault();
    const form = event.target;
@@ -30,7 +32,19 @@ const ToysUpdate = () => {
      body: JSON.stringify(toyInfo),
    })
      .then((res) => res.json())
-     .then((data) => console.log(data));
+     .then((data) => {
+      if(data.modifiedCount > 0) {
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "Successfully update your toy",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+
+        
+      }
+     });
  };
   return (
     <div

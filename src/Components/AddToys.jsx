@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import SectionTitle from "../Pages/Shared/SectionTitle";
 import useDynamicTitle from "../Hooks/useHook";
+import Swal from "sweetalert2";
 
 const AddToys = () => {
   useDynamicTitle('Add Toys')
@@ -61,7 +62,15 @@ const AddToys = () => {
       body: JSON.stringify(toyInfo)
     })
     .then(res => res.json())
-    .then(data => console.log(data))
+    .then(data => {
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "Successfully create your toys",
+        showConfirmButton: false,
+        timer: 1000,
+      });
+    })
     
     
   }

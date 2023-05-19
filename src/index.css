@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -30,4 +32,11 @@
 .bg-gradient{
   background: linear-gradient(190deg, #05f07a, #09ccd3);
 
+}
+.bg-gradient-shade{
+  background: linear-gradient(-190deg, #1bf18671, #09ccd36b);
+
+}
+body{
+  font-family: 'Poppins', sans-serif;
 }

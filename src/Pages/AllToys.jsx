@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import ToysRow from '../Components/AllToys/ToysRow';
 import useDynamicTitle from '../Hooks/useHook';
 import Loadings from './Shared/Loadings';
+import { BiSearch } from 'react-icons/bi';
+
 
 const AllToys = () => {
   useDynamicTitle('All Toys')
 
       const [loading, setLoading] = useState(true)
+      const [inputValue, setInputValue] = useState('')
       const [toys, setToys] = useState([]);
       useEffect(() => {
         fetch("http://localhost:5000/allToys")
@@ -16,34 +19,64 @@ const AllToys = () => {
             setLoading(false);
           })
           .catch((err) => console.error(err));
+
+           
       }, []);
+
+      const handleSearch = () => {
+        fetch(`http://localhost:5000/allToy/${inputValue}`)
+          .then((res) => res.json())
+          .then((data) => {
+            setToys(data);
+            setLoading(false);
+          })
+          .catch((err) => console.error(err));
+      }
+
+
 
       
       if(loading) return <Loadings />
   return (
     <div className="overflow-x-auto w-full">
-      <div className='my-4 pr-2'>
-        <input type="search" className='input input-bordered input-success ml-auto block' placeholder='Search here...'/>
+      <div className="flex gap-3 items-center my-4">
+        <input
+          type="search"
+          className="input input-bordered input-success"
+          placeholder="Search here..."
+          name="text"
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+          
+        />
+        <button className="btn btn-circle btn-outline" onClick={handleSearch}>
+          <BiSearch />
+        </button>
       </div>
-      <table className="table w-full">
-        {/* head */}
-        <thead>
-          <tr>
 
-            <th>Seller Name</th>
-            <th>Toy Name</th>
-            <th>Sub-Category</th>
-            <th>Price</th>
-            <th>Available Quantity</th>
-            <th>View Details</th>
-          </tr>
-        </thead>
-        <tbody>
-          {toys.map((toy) => (
-            <ToysRow key={toy._id} toy={toy} />
-          ))}
-        </tbody>
-      </table>
+      {toys.length ? (
+        <table className="table w-full">
+          <thead>
+            <tr>
+              <th>Seller Name</th>
+              <th>Toy Name</th>
+              <th>Sub-Category</th>
+              <th>Price</th>
+              <th>Available Quantity</th>
+              <th>View Details</th>
+            </tr>
+          </thead>
+          <tbody>
+            {toys.map((toy) => (
+              <ToysRow key={toy._id} toy={toy} />
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p className="text-center text-4xl font-semibold">
+          No Products Available
+        </p>
+      )}
     </div>
   );
 }
