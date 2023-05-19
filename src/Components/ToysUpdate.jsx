@@ -1,23 +1,48 @@
 
+import { useLoaderData } from "react-router-dom";
 import SectionTitle from "../Pages/Shared/SectionTitle";
 
-const ToysUpdate = ({ data, setShowModal }) => {
+const ToysUpdate = () => {
+  const data = useLoaderData()
   const { _id, price, quantity, description } = data;
+ console.log('from', _id);
+ const handleUpdate = (event) => {
+   event.preventDefault();
+   const form = event.target;
 
+   const price = form.price.value;
+ 
+   const quantity = form.quantity.value;
+   const description = form.description.value;
+ 
+
+   const toyInfo = {
+     price,
+     quantity,
+     description,
+   };
+
+   fetch(`http://localhost:5000/updateToy/${_id}`, {
+     method: "PATCH",
+     headers: {
+       "content-type": "application/json",
+     },
+     body: JSON.stringify(toyInfo),
+   })
+     .then((res) => res.json())
+     .then((data) => console.log(data));
+ };
   return (
-    <div className="hero min-h-screen py-9 bg-gray-900/50  fixed z-50 top-0 left-0 after:'' w-full h-full">
+    <div
+      className={`hero min-h-screen py-9 w-full h-full`}
+    >
       <div className="w-full max-w-md shadow-2xl bg-base-100 gradient-thin relative">
-        <button
-          className="absolute top-2 right-4 text-2xl cursor-pointer inline-block"
-          onClick={()=> setShowModal(false)}
-        >
-          x
-        </button>
+ 
         <div className="mt-8">
           {" "}
           <SectionTitle title="UPDATED" />
         </div>
-        <form className="card-body">
+        <form className="card-body" onSubmit={handleUpdate}>
           <div className="form-control">
             <label className="label">
               <span className="label-text">Price</span>

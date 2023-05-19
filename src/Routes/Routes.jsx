@@ -12,12 +12,13 @@ import ToyDetails from '../Components/AllToys/ToyDetails'
 import MyToys from '../Components/MyToys/MyToys'
 import ToysUpdate from '../Components/ToysUpdate'
 import Error from '../Pages/Error'
+import UpdateToy from '../Components/UpdateToy'
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement:<Error />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -37,9 +38,11 @@ export const router = createBrowserRouter([
         path: "my-toys",
         element: <MyToys />,
       },
-      {
-        path: "toys-update",
+      { 
+        path: "toys-update/:id",
         element: <ToysUpdate />,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/updateToy/${params.id}`),
       },
       {
         path: "add-toy",

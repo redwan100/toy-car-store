@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../Context/AuthProvider";
 import SectionTitle from "../Pages/Shared/SectionTitle";
+import useDynamicTitle from "../Hooks/useHook";
 
 const AddToys = () => {
-
+  useDynamicTitle('Add Toys')
   const { user } = useContext(AuthContext);
 
 

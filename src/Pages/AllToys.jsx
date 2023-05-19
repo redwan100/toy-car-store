@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from 'react'
 import ToysRow from '../Components/AllToys/ToysRow';
+import useDynamicTitle from '../Hooks/useHook';
+import Loadings from './Shared/Loadings';
 
 const AllToys = () => {
+  useDynamicTitle('All Toys')
 
+      const [loading, setLoading] = useState(true)
       const [toys, setToys] = useState([]);
       useEffect(() => {
         fetch("http://localhost:5000/allToys")
           .then((res) => res.json())
-          .then((data) => setToys(data))
+          .then((data) => {
+            setToys(data);
+            setLoading(false);
+          })
           .catch((err) => console.error(err));
       }, []);
 
       
+      if(loading) return <Loadings />
   return (
     <div className="overflow-x-auto w-full">
       <div className='my-4 pr-2'>

@@ -1,27 +1,20 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import ToysUpdate from './ToysUpdate';
-
+import {BiTrashAlt} from 'react-icons/bi'
 
 const MyToysCard = ({
   toy,
-  setShowModal,
-  showModal,
-  handleModal,
-  data,
+  handleData
 }) => {
-  const { _id, sellerName, subcategoryName,toyName, price, quantity, subcategory } = toy;
-  const { subcatPhoto1, subcatPhoto2 } = subcategory[0];
+  const { _id, sellerName, subcategoryName,toyName, price, quantity } = toy;
+
+  
+console.log(handleData);
   return (
     <tr>
       <td>{sellerName}</td>
       <td className="">{toyName}</td>
-      <td className="">
-        {/* <img src={subcatPhoto1} alt="" className="w-20 h-20 object-cover" />
-        <img src={subcatPhoto2} alt="" className="w-20 h-20 object-cover" /> */}
-
-        {subcategoryName}
-      </td>
+      <td className="">{subcategoryName}</td>
       <td>${price}</td>
       <td>{quantity}</td>
       <td>
@@ -30,16 +23,15 @@ const MyToysCard = ({
         </Link>
       </td>
       <td>
-        <button className="text-success" onClick={() => handleModal(toy)}>
+        <Link to={`/toys-update/${_id}`} className="text-success">
           Update
-          {showModal && <ToysUpdate data={data} setShowModal={setShowModal} />}
-          
-        </button>
-
+        </Link>
       </td>
 
       <td>
-        <p>Delete</p>
+        <p className="cursor-pointer text-red-400 hover:text-red-500">
+          <BiTrashAlt size={20} />
+        </p>
       </td>
     </tr>
   );

@@ -12,7 +12,7 @@
     box-sizing: content-box;
 }
 .gradient-thin{
-    border-width: 2px;
+    border-width: 3px;
     border-style: solid ;
     border-image: linear-gradient(190deg, #05f07a, #09ccd3);
     border-image-slice: 1;

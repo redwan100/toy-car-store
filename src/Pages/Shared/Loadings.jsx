@@ -3,7 +3,7 @@ import Lottie from "lottie-react";
 import Loading from '../../../public/loading.json'
 const Loadings = () => {
   return (
-    <div>
+    <div className='w-full h-screen grid place-content-center'>
       <Lottie
         animationData={Loading}
         loop={true}

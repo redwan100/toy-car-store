@@ -6,7 +6,9 @@ import useDynamicTitle from '../../Hooks/useHook';
 const MyToys = () => {
   useDynamicTitle('My Toys');
   const [data, setData] = useState({})
-    const [showModal, setShowModal] = useState(true)
+
+
+
     const [loading, setLoading] = useState(true)
       const [toys, setToys] = useState([]);
       const {user} = useContext(AuthContext)
@@ -23,37 +25,36 @@ const MyToys = () => {
 
       if(loading) return <Loadings />
 
-      const handleForm = (event, _id) => {
-        event.preventDefault();
-        const form = event.target;
+      // const handleForm = (event, _id) => {
+      //   event.preventDefault();
+      //   const form = event.target;
 
-        const price = form.price.value;
-        const quantity = form.quantity.value;
-        const description = form.description.value;
+      //   const price = form.price.value;
+      //   const quantity = form.quantity.value;
+      //   const description = form.description.value;
 
-        const toyInfo = {
-          price,
-          quantity,
-          description,
-        };
+      //   const toyInfo = {
+      //     price,
+      //     quantity,
+      //     description,
+      //   };
 
-        fetch(`http://localhost:5000/update/${_id}`, {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(toyInfo),
-        })
-          .then((res) => res.json())
-          .then((data) => console.log(data));
-      };
+      //   fetch(`http://localhost:5000/update/${_id}`, {
+      //     method: "POST",
+      //     headers: {
+      //       "content-type": "application/json",
+      //     },
+      //     body: JSON.stringify(toyInfo),
+      //   })
+      //     .then((res) => res.json())
+      //     .then((data) => console.log(data));
+      // };
 
-      const handleModal = (data) =>{
-        setData(data)
-        setShowModal(!showModal)
-      }
+      // const handleData = (data) =>{
+      //   setData(data)
+      // }
 
-      console.log(showModal,data);
+
 
   return (
     <div>
@@ -76,9 +77,6 @@ const MyToys = () => {
             <MyToysCard
               key={toy._id}
               toy={toy}
-              setShowModal={setShowModal}
-              handleModal={handleModal}
-              data={data}
             />
           ))}
         </tbody>
