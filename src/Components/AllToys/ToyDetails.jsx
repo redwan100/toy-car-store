@@ -19,7 +19,7 @@ const ToyDetails = () => {
     <>
       <div className="card lg:card-side shadow-xl gradient-thin my-8">
         <figure>
-          <img src={photoUrl} alt="Album" />
+          <img src={photoUrl} alt="Album" className='h-full'/>
         </figure>
         <div className="card-body space-y-4">
           <div className='space-y-1'>

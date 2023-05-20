@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
 import Loadings from "../Shared/Loadings";
+import TabCard from "./TabCard";
 
 //  [
 //   {
@@ -86,7 +87,7 @@ import Loadings from "../Shared/Loadings";
 
 const CategoryTab = () => {
  const [loading, setLoading] = useState(true)
- const [products, setProducts] = useState(null)
+ const [products, setProducts] = useState([])
  const [activeTab, setActiveTab] = useState('sports')
 
  
@@ -112,7 +113,7 @@ const CategoryTab = () => {
 
   return (
     <div>
-      <div className="btn-group">
+      <div className="btn-group mx-auto block w-max py-4">
         <button className="btn btn-active" onClick={() => handleTab("sports")}>
           Sports
         </button>
@@ -124,14 +125,9 @@ const CategoryTab = () => {
         </button>
       </div>
 
-      {products &&
-        products.map((product, i) => (
-          <div key={i}>
-            <h1>{product.categoryName}</h1>
-            <h1>{product.description }</h1>
-            <img src={product.photoUrl} alt="" />
-          </div>
-        ))}
+      <div className="grid gap-5 sm:grid-cols-2">
+        {products && products.map((product) => <TabCard key={product._id} {...product}/>)}
+      </div>
     </div>
   );
 }

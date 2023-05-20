@@ -43,7 +43,7 @@ const AllToys = () => {
         <input
           type="search"
           className="input input-bordered input-success"
-          placeholder="Search here..."
+          placeholder="Search by toy name"
           name="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}

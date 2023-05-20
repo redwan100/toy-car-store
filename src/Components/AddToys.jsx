@@ -21,20 +21,9 @@ const AddToys = () => {
     const rating = form.rating.value;
     const quantity = form.quantity.value;
     const description = form.description.value;
-    let categoryName = form.categoryName.value;
+    let subcategoryName = form.subcategoryName.value;
 
 
-    const toySubcategory = [
-      {
-       categoryName, 
-      toyName,
-      photoUrl,
-      price,
-      rating,
-      quantity,
-      description,
-    }
-    ];
 
      const toyInfo = {
        sellerName,
@@ -45,8 +34,7 @@ const AddToys = () => {
        rating,
        quantity,
        description,
-       categoryName,
-       subCategory: toySubcategory,
+       subcategoryName,
      };
 
 
@@ -124,8 +112,8 @@ const AddToys = () => {
             <div className="form-control mb-4">
               <input
                 type="text"
-                placeholder="Category Name"
-                name="categoryName"
+                placeholder="subcategory Name"
+                name="subcategoryName"
                 className="input input-bordered input-success"
               />
             </div>

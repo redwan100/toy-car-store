@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import {HiOutlineArrowNarrowRight} from 'react-icons/hi'
+
 
 const ToysRow = ({toy}) => {
  
@@ -7,7 +9,7 @@ const ToysRow = ({toy}) => {
     _id,
     sellerName,
     toyName,
-    categoryName,
+    subcategoryName,
     price,
     quantity,
   } = toy;
@@ -17,13 +19,13 @@ const ToysRow = ({toy}) => {
       <td>{sellerName}</td>
       <td className="">{toyName}</td>
       <td className="space-y-2">
-        {categoryName}
+        {subcategoryName}
       </td>
       <td>${price}</td>
       <td>{quantity}</td>
       <th>
-        <Link to={`/toyDetails/${_id}`} className="btn btn-ghost btn-xs">
-          details
+        <Link to={`/toyDetails/${_id}`} className="btn btn-ghost btn-xs badge ">
+         details <HiOutlineArrowNarrowRight style={{marginLeft:'5px'}}/>
         </Link>
       </th>
     </tr>
