@@ -4,6 +4,7 @@ import CategoryTab from './Tab';
 import Gallery from './Gallery';
 import useDynamicTitle from '../../Hooks/useHook';
 import PopularToys from './PopulerProduct/PopularToys';
+import NewProducts from './NewProducts/NewProducts';
 
 
 
@@ -22,6 +23,9 @@ const Home = () => {
       </div>
     <div>
       <PopularToys />
+    </div>
+    <div>
+      <NewProducts />
     </div>
     </div>
   );

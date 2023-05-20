@@ -43,7 +43,7 @@ const PopularToys = () => {
   return (
     <div className='py-4'>
       <div className='my-8'>
-        <SectionTitle title="New Products" />
+        <SectionTitle title="Popular Products" />
       </div>
       <div className="grid gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {productInfo.map((product) => (

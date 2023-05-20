@@ -1,16 +1,16 @@
 import React from 'react'
 
-const PopularToysCard = ({product}) => {
-    const {name,img, category, price} = product;
+const NewProductsCard = ({product}) => {
+    const { name, img, category, price } = product;
   return (
-    <div className="gradient-thin">
+ <div className="gradient-thin">
       <figure>
         <img src={img} alt="Shoes" />
       </figure>
-      <div className="card-body">
+      <div className="card-body ">
         <h2 className="card-title">
           {name}
-          <div className="badge badge-secondary">POPULAR</div>
+          <div className="badge badge-secondary">NEW</div>
         </h2>
         
           <h1 className='font-medium'>Category: {category}</h1>
@@ -21,7 +21,7 @@ const PopularToysCard = ({product}) => {
         </div>
       </div>
     </div>
-  );
+  )
 }
 
-export default PopularToysCard
+export default NewProductsCard
