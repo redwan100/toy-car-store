@@ -21,9 +21,8 @@ const AddToys = () => {
     const rating = form.rating.value;
     const quantity = form.quantity.value;
     const description = form.description.value;
-    // const subcatPhoto1 = form.picture1.value
-    // const subcatPhoto2 = form.picture2.value
-    const subcategoryName = form.subcategoryName.value;
+
+    let subcategoryName = form.subcategoryName.value;
 
 
     const toySubcategory = [
@@ -35,8 +34,6 @@ const AddToys = () => {
       rating,
       quantity,
       description,
-      // subcatPhoto1,
-      // subcatPhoto2,
     }
     ];
 
@@ -66,7 +63,7 @@ const AddToys = () => {
       Swal.fire({
         position: "top",
         icon: "success",
-        title: "Successfully create your toys",
+        title: "Successfully create your post",
         showConfirmButton: false,
         timer: 1000,
       });

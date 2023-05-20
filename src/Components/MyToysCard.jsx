@@ -23,7 +23,7 @@ const MyToysCard = ({
       </td>
       <td>
         <Link to={`/toys-update/${_id}`} className="text-success">
-          Update
+         Edit
         </Link>
       </td>
 
