@@ -6,14 +6,14 @@ const MyToysCard = ({
   toy,
    handleDelete
 }) => {
-  const { _id, sellerName, subcategoryName,toyName, price, quantity } = toy;
+  const { _id, sellerName, categoryName,toyName, price, quantity } = toy;
 
 
   return (
     <tr>
       <td>{sellerName}</td>
       <td className="">{toyName}</td>
-      <td className="">{subcategoryName}</td>
+      <td className="">{categoryName}</td>
       <td>${price}</td>
       <td>{quantity}</td>
       <td>

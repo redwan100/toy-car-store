@@ -33,7 +33,6 @@ const AddToys = () => {
       rating,
       quantity,
       description,
-      subCategory: categoryName
     }
     ];
 
@@ -47,7 +46,6 @@ const AddToys = () => {
        quantity,
        description,
        categoryName,
-
        subCategory: toySubcategory,
      };
 
@@ -121,7 +119,7 @@ const AddToys = () => {
 
           <div>
             <label className="label">
-              <span className="label-text"> Category</span>
+              <span className="label-text"> Subcategory Name</span>
             </label>
             <div className="form-control mb-4">
               <input

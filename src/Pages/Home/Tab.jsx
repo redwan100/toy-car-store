@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import "react-tabs/style/react-tabs.css";
+import Loadings from "../Shared/Loadings";
 
 //  [
 //   {
@@ -83,25 +84,54 @@ import "react-tabs/style/react-tabs.css";
 //   },
 // ]
 
-import data from '../../../tab.json'
 const CategoryTab = () => {
- 
-//  const [products, setProducts] = useState([])
+ const [loading, setLoading] = useState(true)
+ const [products, setProducts] = useState(null)
+ const [activeTab, setActiveTab] = useState('sports')
 
-//  useEffect(()=>{
-//   fetch(data)
-//   .then(res => res.json())
-//   .then(data => setProducts(data))
-//  },[])
-  
-// console.log(products);
+ 
+
+ useEffect(()=>{
+  fetch(`http://localhost:5000/categoryItems/${activeTab}`)
+    .then((res) => res.json())
+    .then((data) => {
+      setProducts(data);
+      setLoading(false);
+    });
+ },[activeTab])
+
+ const handleTab = (text) => {
+  setActiveTab(text)
+ }
+
+ 
+ if(loading) {
+  return <Loadings />
+ }
+
+
   return (
     <div>
       <div className="btn-group">
-        <button className="btn btn-active">Sports</button>
-        <button className="btn">Regular</button>
-        <button className="btn">Truck</button>
+        <button className="btn btn-active" onClick={() => handleTab("sports")}>
+          Sports
+        </button>
+        <button className="btn" onClick={() => handleTab("regular")}>
+          Regular
+        </button>
+        <button className="btn" onClick={() => handleTab("truck")}>
+          Truck
+        </button>
       </div>
+
+      {products &&
+        products.map((product, i) => (
+          <div key={i}>
+            <h1>{product.categoryName}</h1>
+            <h1>{product.description }</h1>
+            <img src={product.photoUrl} alt="" />
+          </div>
+        ))}
     </div>
   );
 }
