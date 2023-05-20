@@ -21,19 +21,19 @@ const AddToys = () => {
     const rating = form.rating.value;
     const quantity = form.quantity.value;
     const description = form.description.value;
-
-    let subcategoryName = form.subcategoryName.value;
+    let categoryName = form.categoryName.value;
 
 
     const toySubcategory = [
       {
-       subcategoryName, 
+       categoryName, 
       toyName,
       photoUrl,
       price,
       rating,
       quantity,
       description,
+      subCategory: categoryName
     }
     ];
 
@@ -46,8 +46,9 @@ const AddToys = () => {
        rating,
        quantity,
        description,
-       subcategoryName,
-       subcategory: toySubcategory,
+       categoryName,
+
+       subCategory: toySubcategory,
      };
 
 
@@ -118,6 +119,20 @@ const AddToys = () => {
             />
           </div>
 
+          <div>
+            <label className="label">
+              <span className="label-text"> Category</span>
+            </label>
+            <div className="form-control mb-4">
+              <input
+                type="text"
+                placeholder="Category Name"
+                name="categoryName"
+                className="input input-bordered input-success"
+              />
+            </div>
+          </div>
+
           <div className="form-control">
             <label className="label">
               <span className="label-text">Picture</span>
@@ -177,38 +192,6 @@ const AddToys = () => {
             ></textarea>
           </div>
 
-          <div>
-            <label className="label">
-              <span className="label-text"> Subcategory</span>
-            </label>
-            <div className="form-control mb-4">
-              <input
-                type="text"
-                placeholder="Subcategory Name"
-                name="subcategoryName"
-                className="input input-bordered input-success"
-              />
-            </div>
-            {/* <div className="form-control mb-4">
-              <input
-                type="text"
-                placeholder="subcategory photo"
-                name="picture1"
-                className="input input-bordered input-success"
-              />
-            </div>
-
-            <div className="form-control">
-              <input
-                type="text"
-                placeholder="subcategory photo"
-                name="picture2"
-                className="input input-bordered input-success"
-              />
-            </div> */}
-
-          </div>
-          
           <div className="form-control mt-6">
             <button
               className="bg-gradient py-3 text-lg font-semibold"
