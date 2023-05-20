@@ -105,14 +105,21 @@ const Navbar = () => {
 
         <div>
           {user && (
-            <div className="flex gap-1">
-              {user.photoUrl ? (
-                <div className="w-8 h-8 rounded-full">{user.photoUrl}</div>
+            <div className="flex gap-3 items-center">
+              {user.photoURL ? (
+                <div>
+                  <img
+                    src={user.photoURL}
+                    alt=""
+                    className="w-8 h-8 rounded-full object-cover ring-2"
+                    title={user?.displayName}
+                  />
+                </div>
               ) : (
                 <BiUserCircle size={25} />
               )}
               <span className="flex items-center" onClick={handleSingOut}>
-                <FiLogOut size={25} cursor={"pointer"} />
+                <FiLogOut size={20} cursor={"pointer"} />
               </span>
             </div>
           )}

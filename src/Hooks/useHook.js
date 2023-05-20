@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 function useDynamicTitle(title) {
   useEffect(() => {
-    document.title = `Gear up Toys - ${title}`
+    document.title = `Turbo Toys - ${title}`;
   }, [title]);
 }
 

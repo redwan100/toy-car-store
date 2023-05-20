@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 import Lottie from "lottie-react";
 import signInImg from '../../../public/login.json'
+import { updateProfile } from "firebase/auth";
 
 const SignUp = () => {
   const [error, setError] = useState("");
@@ -22,10 +23,22 @@ const SignUp = () => {
         const createdUser = result.user;
         console.log(createdUser);
         form.reset();
+        updateUserData(result.user,username, photoUrl)
       })
       .catch((error) => setError(error.message));
   };
 
+
+  const updateUserData = (user, name, photo) => {
+    updateProfile(user, {
+      displayName: name,
+      photoURL: photo,
+    })
+      .then(() => {
+        console.log("user name updated");
+      })
+      .catch((err) => console.log(err));
+  };
   if (loading) {
     return <p>Loading...</p>;
   }

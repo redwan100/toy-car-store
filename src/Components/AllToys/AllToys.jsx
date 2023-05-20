@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import ToysRow from '../Components/AllToys/ToysRow';
-import useDynamicTitle from '../Hooks/useHook';
-import Loadings from './Shared/Loadings';
+import ToysRow from './ToysRow';
+import useDynamicTitle from '../../Hooks/useHook';
+import Loadings from '../../Pages/Shared/Loadings';
 import { BiSearch } from 'react-icons/bi';
 
 
