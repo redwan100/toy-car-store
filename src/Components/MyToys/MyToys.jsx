@@ -10,8 +10,10 @@ const MyToys = () => {
     const [loading, setLoading] = useState(true)
       const [toys, setToys] = useState([]);
       const {user} = useContext(AuthContext)
+  const [showModal, setShowModal] = useState(false)
+  const [products, setProducts] = useState({})
 
-
+  const [update, setUpdate] = useState(false)
       useEffect(() => {
         fetch(`http://localhost:5000/allToys?email=${user?.email}`)
           .then((res) => res.json())
@@ -20,12 +22,19 @@ const MyToys = () => {
             setLoading(false)
           })
           .catch((err) => console.error(err));
-      }, [user]);
+      }, [user, update]);
 
 
-      
+    const handleModal = (product, _id) =>{
+      setProducts(product)   
+        setShowModal(!showModal)
+      setUpdate(!update)
+    }
 
 
+    useEffect(()=>{
+      setUpdate(true)
+    },[update])
      
       /* ------------------------ DELETE USER DATA FUNCTION ----------------------- */
       const handleDelete = (id) => {
@@ -78,7 +87,14 @@ const MyToys = () => {
         </thead>
         <tbody>
           {toys.map((toy) => (
-            <MyToysCard key={toy._id} toy={toy} handleDelete={handleDelete} />
+            <MyToysCard
+              key={toy._id}
+              toy={toy}
+              handleDelete={handleDelete}
+              handleModal={handleModal}
+             showModal={showModal}
+              products={products}
+            />
           ))}
         </tbody>
       </table>
