@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import SectionTitle from "../../Shared/SectionTitle";
 import NewProductsCard from "./NewPrductsCard";
@@ -40,9 +40,12 @@ const productInfo = [
     img: "https://images.pexels.com/photos/54278/pexels-photo-54278.jpeg?auto=compress&cs=tinysrgb&w=600",
   },
 ];
+
+
 const NewProducts = () => {
+  
   return (
-    <div className="py-4">
+    <div className="py-4" >
       <div className="my-8">
         <SectionTitle title="New Products" />
       </div>

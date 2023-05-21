@@ -1,8 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Link, NavLink } from 'react-router-dom';
 import {BiUserCircle} from 'react-icons/bi'
 import { FiLogOut } from "react-icons/fi";
 import { AuthContext } from '../../Context/AuthProvider';
+import brand from '../../assets/logo-no-background.png'
 
 
 const Links = ()=>{
@@ -56,13 +57,16 @@ const Navbar = () => {
  const { user, logOut } = useContext(AuthContext);
  console.log(user);
 
+
  const handleSingOut = () => {
    logOut()
      .then(() => {})
      .catch((err) => console.log(err));
  };
   return (
-    <div className="navbar mx-auto lg:w-[90%]">
+    <div
+      className="navbar mx-auto lg:w-[90%]"
+    >
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -88,7 +92,9 @@ const Navbar = () => {
             {Links()}
           </ul>
         </div>
-        <a className="btn btn-ghost normal-case text-xl">daisyUI</a>
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
+          <img src={brand} alt="" className="w-8" />
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1 space-x-4">{Links()}</ul>

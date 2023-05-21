@@ -1,21 +1,29 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
 import useDynamicTitle from '../Hooks/useHook'
 import SectionTitle from './Shared/SectionTitle'
-
+import AOS from 'aos'
+import "aos/dist/aos.css";
 const Blogs = () => {
   useDynamicTitle('Blog')
-  const [show, setShow] = useState(false)
 
-  const handleShowContent = () =>{
-    setShow()
-  }
+  useEffect(()=>{
+    AOS.init()
+  },[])
   return (
     <div className="py-8">
       <div className="my-5">
         <SectionTitle title="FAQ" />
       </div>
       <div className=" grid gap-4 md:grid-cols-2">
-        <div className="faq bg-slate-300">
+        <div
+          className="faq bg-slate-300"
+          data-aos="fade-down"
+          data-aos-duration="1000"
+          data-aos-easing="ease-in-out"
+          data-aos-mirror="true"
+          data-aos-once="false"
+          data-aos-anchor-placement="top-center"
+        >
           <h1 className="fag-title">
             What is an access token and refresh token? How do they work and
             where should we store them on the client-side?
@@ -47,9 +55,17 @@ const Blogs = () => {
           </div>
         </div>
 
-        <div className='faq bg-red-200 text-red-500'>
-          <h1 className='faq-title'>Compare SQL and NoSQL databases?</h1>
-          <div className='bg-red-100 p-2'>
+        <div
+          className="faq bg-red-200 text-red-500"
+          data-aos="fade-down"
+          data-aos-duration="1000"
+          data-aos-easing="ease-in-out"
+          data-aos-mirror="true"
+          data-aos-once="false"
+          data-aos-anchor-placement="top-center"
+        >
+          <h1 className="faq-title">Compare SQL and NoSQL databases?</h1>
+          <div className="bg-red-100 p-2">
             <p>
               SQL (Structured Query Language) and NoSQL (Not Only SQL) are two
               different types of database management systems that have distinct
@@ -75,9 +91,17 @@ const Blogs = () => {
           </div>
         </div>
 
-        <div className='faq bg-purple-200 text-purple-500'>
-          <h1 className='faq-title'>What is express js? What is Nest JS?</h1>
-          <div className='bg-purple-100 p-2'>
+        <div
+          className="faq bg-purple-200 text-purple-500"
+          data-aos="fade-down"
+          data-aos-duration="1000"
+          data-aos-easing="ease-in-out"
+          data-aos-mirror="true"
+          data-aos-once="false"
+          data-aos-anchor-placement="top-center"
+        >
+          <h1 className="faq-title">What is express js? What is Nest JS?</h1>
+          <div className="bg-purple-100 p-2">
             <p>
               Express.js is a popular and widely used web application framework
               for Node.js. It provides a minimalistic and flexible set of
@@ -114,10 +138,20 @@ const Blogs = () => {
           </div>
         </div>
 
-        <div className='faq bg-pink-200 text-pink-500'>
-          <h1 className='faq-title'>What is MongoDB aggregate and how does it work?</h1>
+        <div
+          className="faq bg-pink-200 text-pink-500"
+          data-aos="fade-up"
+          data-aos-duration="1000"
+          data-aos-easing="ease-in-out"
+          data-aos-mirror="true"
+          data-aos-once="false"
+          data-aos-anchor-placement="top-center"
+        >
+          <h1 className="faq-title">
+            What is MongoDB aggregate and how does it work?
+          </h1>
 
-          <div className='bg-purple-100 p-2'>
+          <div className="bg-purple-100 p-2">
             <p>
               In MongoDB, the aggregate operation is a powerful and flexible way
               to perform data processing and aggregation tasks on the data

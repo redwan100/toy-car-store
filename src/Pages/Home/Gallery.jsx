@@ -1,5 +1,8 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import SectionTitle from '../Shared/SectionTitle';
+import AOS from "aos";
+import "aos/dist/aos.css";
+
 
 const galleryItems = [
   "https://images.pexels.com/photos/35967/mini-cooper-auto-model-vehicle.jpg?auto=compress&cs=tinysrgb&w=600",
@@ -18,20 +21,30 @@ const galleryItems = [
 ];
 
 const Gallery = () => {
+  useEffect(() => {
+    AOS.init();
+  }, []);
   return (
     <>
-   
-        <div className="py-9">
-          <SectionTitle title="Gallery" />
-        </div>
-        <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {galleryItems.map((item, i) => (
-            <div className="gradient-thin" key={i}>
-              <img src={item} alt="" className="w-full h-full object-cover" />
-            </div>
-          ))}
-        </div>
-
+      <div className="py-9">
+        <SectionTitle title="Gallery" />
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        {galleryItems.map((item, i) => (
+          <div
+            className="gradient-thin"
+            key={i}
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-easing="ease-out-cubic"
+            data-aos-mirror="true"
+            data-aos-once="false"
+            data-aos-anchor-placement="top-center"
+          >
+            <img src={item} alt="" className="w-full h-full object-cover" />
+          </div>
+        ))}
+      </div>
     </>
   );
 }
