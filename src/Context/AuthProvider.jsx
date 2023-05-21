@@ -1,4 +1,4 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";import Swal from "sweetalert2";
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -7,7 +7,7 @@ import {
   signOut,
   GoogleAuthProvider,
   signInWithPopup,
-  updateProfile,
+
 } from "firebase/auth";
 import app from "../firebase/firebase.config";
 
@@ -42,7 +42,17 @@ const ContextProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider);
   };
 
-  
+   const handleTost = () => {
+     if (!user) {
+       Swal.fire({
+         position: "top",
+         icon: "error",
+         title: "Please Login first",
+         showConfirmButton: false,
+         timer: 1200,
+       });
+     }
+   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (loggedUser) => {
@@ -62,6 +72,7 @@ const ContextProvider = ({ children }) => {
     logOut,
     loading,
     googleSignIn,
+    handleTost,
   };
   return (
     <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>

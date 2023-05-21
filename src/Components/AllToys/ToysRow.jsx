@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { Link } from 'react-router-dom';
 import {HiOutlineArrowNarrowRight} from 'react-icons/hi'
+import { AuthContext } from '../../Context/AuthProvider';
 
 
 const ToysRow = ({toy}) => {
+
+  const {handleTost} = useContext(AuthContext)
  
   const {
     _id,
@@ -23,7 +26,7 @@ const ToysRow = ({toy}) => {
       </td>
       <td>${price}</td>
       <td>{quantity}</td>
-      <th>
+      <th onClick={handleTost}>
         <Link to={`/toyDetails/${_id}`} className="btn btn-ghost btn-xs badge ">
          details <HiOutlineArrowNarrowRight style={{marginLeft:'5px'}}/>
         </Link>

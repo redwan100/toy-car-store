@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "react-tabs/style/react-tabs.css";
 import Loadings from "../Shared/Loadings";
 import TabCard from "./TabCard";
-
+import { AuthContext } from "../../Context/AuthProvider";
 
 
 const CategoryTab = () => {
@@ -11,7 +11,7 @@ const CategoryTab = () => {
  const [btns, setBtns] = useState([])
  const [activeTab, setActiveTab] = useState('sports')
 
- 
+ const {user, handleTost} = useContext(AuthContext)
 
  useEffect(()=>{
   fetch(`http://localhost:5000/categoryItems/${activeTab}`)
@@ -21,6 +21,11 @@ const CategoryTab = () => {
       setLoading(false);
     });
  },[activeTab])
+
+
+ const handleTosts =()=>{
+  handleTost()
+ }
 
 
  useEffect(()=>{
@@ -58,7 +63,9 @@ const CategoryTab = () => {
 
       <div className="grid gap-5 sm:grid-cols-2">
         {products &&
-          products.map((product) => <TabCard key={product._id} {...product} />)}
+          products.map((product) => (
+            <TabCard handleTost={handleTosts} key={product._id} {...product} />
+          ))}
       </div>
     </div>
   );

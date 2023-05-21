@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import {BiTrashAlt} from 'react-icons/bi'
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 import UpdateToy from './UpdateToy';
-import ToysUpdate from './ToysUpdate';
 
 const MyToysCard = ({ toy, handleDelete, handleModal, showModal, products }) => {
   const { _id, sellerName, subcategoryName, toyName, price, quantity } = toy;
@@ -20,15 +19,10 @@ const MyToysCard = ({ toy, handleDelete, handleModal, showModal, products }) => 
           details <HiOutlineArrowNarrowRight style={{ marginLeft: "5px" }} />
         </Link>
       </td>
-      {/* <td>
-        <Link to={`/toys-update/${_id}`} className="text-success">
-          Edit
-        </Link>
-      </td> */}
 
       <td>
         <button className="text-success" onClick={() => handleModal(toy, _id)}>
-          Update
+          Edit
         </button>
         {showModal && <UpdateToy handleModal={handleModal} products={products} />}
       </td>

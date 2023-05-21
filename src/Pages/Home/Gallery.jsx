@@ -34,7 +34,7 @@ const Gallery = () => {
           <div
             className="gradient-thin"
             key={i}
-            data-aos="fade-up"
+            data-aos="fade-down"
             data-aos-duration="1000"
             data-aos-easing="ease-out-cubic"
             data-aos-mirror="true"
