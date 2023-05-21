@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <div className="space-y-5">
       <div
-        data-aos="fade-down"
+        data-aos="fade-up"
         data-aos-duration="1000"
         data-aos-easing="ease-in-out"
         data-aos-mirror="true"

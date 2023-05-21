@@ -11,7 +11,7 @@ const CategoryTab = () => {
  const [btns, setBtns] = useState([])
  const [activeTab, setActiveTab] = useState('sports')
 
- const {user, handleTost} = useContext(AuthContext)
+ const { handleTost} = useContext(AuthContext)
 
  useEffect(()=>{
   fetch(`http://localhost:5000/categoryItems/${activeTab}`)
@@ -44,7 +44,7 @@ const CategoryTab = () => {
  const btnArr = btns.map(p => p.subcategoryName)
 
  const btn = [...new Set(btnArr)]
- console.log(btn);
+
  
  if(loading) {
   return <Loadings />
@@ -55,7 +55,7 @@ const CategoryTab = () => {
     <div>
       <div className="btn-group mx-auto block w-max py-4">
         {btn.slice(0, 3).map((b, i) => (
-          <button className={`btn`} key={i} onClick={() => handleTab(b)}>
+          <button className={`btn ${activeTab ===b && 'bg-red-500'}`} key={i} onClick={() => handleTab(b)}>
             {b}
           </button>
         ))}
