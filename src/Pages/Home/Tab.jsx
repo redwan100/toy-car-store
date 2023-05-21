@@ -4,58 +4,56 @@ import Loadings from "../Shared/Loadings";
 import TabCard from "./TabCard";
 import { AuthContext } from "../../Context/AuthProvider";
 
-
 const CategoryTab = () => {
- const [loading, setLoading] = useState(true)
- const [products, setProducts] = useState([])
- const [btns, setBtns] = useState([])
- const [activeTab, setActiveTab] = useState('sports')
+  const [loading, setLoading] = useState(true);
+  const [products, setProducts] = useState([]);
+  const [btns, setBtns] = useState([]);
+  const [activeTab, setActiveTab] = useState("sports");
 
- const { handleTost} = useContext(AuthContext)
+  const { handleTost } = useContext(AuthContext);
 
- useEffect(()=>{
-  fetch(`http://localhost:5000/categoryItems/${activeTab}`)
-    .then((res) => res.json())
-    .then((data) => {
-      setProducts(data);
-      setLoading(false);
-    });
- },[activeTab])
+  useEffect(() => {
+    fetch(`https://cartoystor.vercel.app/categoryItems/${activeTab}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+        setLoading(false);
+      });
+  }, [activeTab]);
 
+  const handleTosts = () => {
+    handleTost();
+  };
 
- const handleTosts =()=>{
-  handleTost()
- }
+  useEffect(() => {
+    fetch(`https://cartoystor.vercel.app/allToys`)
+      .then((res) => res.json())
+      .then((data) => {
+        setBtns(data);
+      });
+  }, [activeTab]);
 
+  const handleTab = (text) => {
+    setActiveTab(text);
+  };
 
- useEffect(()=>{
-  fetch(`http://localhost:5000/allToys`)
-    .then((res) => res.json())
-    .then((data) => {
-      setBtns(data);
-      
-    });
- },[activeTab])
+  const btnArr = btns.map((p) => p.subcategoryName);
 
- const handleTab = (text) => {
-  setActiveTab(text)
- }
+  const btn = [...new Set(btnArr)];
 
- const btnArr = btns.map(p => p.subcategoryName)
-
- const btn = [...new Set(btnArr)]
-
- 
- if(loading) {
-  return <Loadings />
- }
-
+  if (loading) {
+    return <Loadings />;
+  }
 
   return (
     <div>
       <div className="btn-group mx-auto block w-max py-4">
         {btn.slice(0, 3).map((b, i) => (
-          <button className={`btn ${activeTab ===b && 'bg-red-500'}`} key={i} onClick={() => handleTab(b)}>
+          <button
+            className={`btn ${activeTab === b && "bg-red-500"}`}
+            key={i}
+            onClick={() => handleTab(b)}
+          >
             {b}
           </button>
         ))}
@@ -69,5 +67,5 @@ const CategoryTab = () => {
       </div>
     </div>
   );
-}
+};
 export default CategoryTab;

@@ -5,12 +5,10 @@ import useDynamicTitle from "../Hooks/useHook";
 import Swal from "sweetalert2";
 
 const AddToys = () => {
-  useDynamicTitle('Add Toys')
+  useDynamicTitle("Add Toys");
   const { user } = useContext(AuthContext);
 
-
-
-  const handleForm = (event) =>{
+  const handleForm = (event) => {
     event.preventDefault();
     const form = event.target;
     const sellerName = form.sellerName.value;
@@ -23,41 +21,36 @@ const AddToys = () => {
     const description = form.description.value;
     let subcategoryName = form.subcategoryName.value;
 
+    const toyInfo = {
+      sellerName,
+      sellerEmail,
+      toyName,
+      photoUrl,
+      price,
+      rating,
+      quantity,
+      description,
+      subcategoryName,
+    };
 
-
-     const toyInfo = {
-       sellerName,
-       sellerEmail,
-       toyName,
-       photoUrl,
-       price,
-       rating,
-       quantity,
-       description,
-       subcategoryName,
-     };
-
-
-    fetch("http://localhost:5000/addToy",{
-      method: 'POST',
-      headers:{
-        'content-type': 'application/json'
+    fetch("https://cartoystor.vercel.app/addToy", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
       },
-      body: JSON.stringify(toyInfo)
+      body: JSON.stringify(toyInfo),
     })
-    .then(res => res.json())
-    .then(data => {
-      Swal.fire({
-        position: "top",
-        icon: "success",
-        title: "Successfully create your post",
-        showConfirmButton: false,
-        timer: 1000,
+      .then((res) => res.json())
+      .then((data) => {
+        Swal.fire({
+          position: "top",
+          icon: "success",
+          title: "Successfully create your post",
+          showConfirmButton: false,
+          timer: 1000,
+        });
       });
-    })
-    
-    
-  }
+  };
 
   return (
     <div className="hero min-h-screen py-9">

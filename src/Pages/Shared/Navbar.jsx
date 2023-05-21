@@ -94,6 +94,7 @@ const Navbar = () => {
         </div>
         <Link to="/" className="btn btn-ghost normal-case text-xl">
           <img src={brand} alt="" className="w-8" />
+          <span>TURBO</span>
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">

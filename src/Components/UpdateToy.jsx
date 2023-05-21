@@ -1,52 +1,54 @@
-import React from 'react'
-import { useLoaderData } from 'react-router-dom'
-import SectionTitle from '../Pages/Shared/SectionTitle';
-import Swal from 'sweetalert2';
+import React from "react";
+import { useLoaderData } from "react-router-dom";
+import SectionTitle from "../Pages/Shared/SectionTitle";
+import Swal from "sweetalert2";
 
-const UpdateToy = ({handleModal, products}) => {
-const { _id, price, quantity, description } = products;
- 
-   const handleUpdate = (event) => {
-     event.preventDefault();
-     const form = event.target;
+const UpdateToy = ({ handleModal, products }) => {
+  const { _id, price, quantity, description } = products;
 
-     const price = form.price.value;
+  const handleUpdate = (event) => {
+    event.preventDefault();
+    const form = event.target;
 
-     const quantity = form.quantity.value;
-     const description = form.description.value;
-     
-     const toyInfo = {
-       price,
-       quantity,
-       description,
-      };
-      
-     fetch(`http://localhost:5000/updateToy/${_id}`, {
-       method: "PATCH",
-       headers: {
-         "content-type": "application/json",
-       },
-       body: JSON.stringify(toyInfo),
-     })
-       .then((res) => res.json())
-       .then((data) => {
-         if (data.modifiedCount > 0) {
-           Swal.fire({
-             position: "top",
-             icon: "success",
-             title: "Successfully update your toy",
-             showConfirmButton: false,
-             timer: 1000,
-           });
-           setTimeout(() => {
+    const price = form.price.value;
+
+    const quantity = form.quantity.value;
+    const description = form.description.value;
+
+    const toyInfo = {
+      price,
+      quantity,
+      description,
+    };
+
+    fetch(`https://cartoystor.vercel.app/updateToy/${_id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(toyInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.modifiedCount > 0) {
+          Swal.fire({
+            position: "top",
+            icon: "success",
+            title: "Successfully update your toy",
+            showConfirmButton: false,
+            timer: 1000,
+          });
+          setTimeout(() => {
             handleModal();
-           }, 1000);
-         }
-       });
-   };
+          }, 1000);
+        }
+      });
+  };
 
   return (
-    <div className={`hero min-h-screen py-9 w-full h-full fixed top-0 left-0 z-50 bg-slate-950/30`}>
+    <div
+      className={`hero min-h-screen py-9 w-full h-full fixed top-0 left-0 z-50 bg-slate-950/30`}
+    >
       <div className="w-full max-w-md shadow-2xl bg-base-100 gradient-thin relative">
         <div className="mt-8">
           {" "}
@@ -95,7 +97,6 @@ const { _id, price, quantity, description } = products;
             <button
               className="bg-gradient text-gray-800 py-3 text-lg font-semibold"
               type="submit"
-              
             >
               UPDATE
             </button>
@@ -104,6 +105,6 @@ const { _id, price, quantity, description } = products;
       </div>
     </div>
   );
-}
+};
 
-export default UpdateToy
+export default UpdateToy;

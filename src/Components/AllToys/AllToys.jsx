@@ -1,42 +1,36 @@
 import React, { useEffect, useState } from "react";
-import ToysRow from './ToysRow';
-import useDynamicTitle from '../../Hooks/useHook';
-import Loadings from '../../Pages/Shared/Loadings';
-import { BiSearch } from 'react-icons/bi';
-
+import ToysRow from "./ToysRow";
+import useDynamicTitle from "../../Hooks/useHook";
+import Loadings from "../../Pages/Shared/Loadings";
+import { BiSearch } from "react-icons/bi";
 
 const AllToys = () => {
-  useDynamicTitle('All Toys')
+  useDynamicTitle("All Toys");
 
-      const [loading, setLoading] = useState(true)
-      const [inputValue, setInputValue] = useState('')
-      const [toys, setToys] = useState([]);
-      useEffect(() => {
-        fetch("http://localhost:5000/allToys")
-          .then((res) => res.json())
-          .then((data) => {
-            setToys(data);
-            setLoading(false);
-          })
-          .catch((err) => console.error(err));
+  const [loading, setLoading] = useState(true);
+  const [inputValue, setInputValue] = useState("");
+  const [toys, setToys] = useState([]);
+  useEffect(() => {
+    fetch("https://cartoystor.vercel.app/allToys")
+      .then((res) => res.json())
+      .then((data) => {
+        setToys(data);
+        setLoading(false);
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
-           
-      }, []);
+  const handleSearch = () => {
+    fetch(`https://cartoystor.vercel.app/allToy/${inputValue}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setToys(data);
+        setLoading(false);
+      })
+      .catch((err) => console.error(err));
+  };
 
-      const handleSearch = () => {
-        fetch(`http://localhost:5000/allToy/${inputValue}`)
-          .then((res) => res.json())
-          .then((data) => {
-            setToys(data);
-            setLoading(false);
-          })
-          .catch((err) => console.error(err));
-      }
-
-
-
-      
-      if(loading) return <Loadings />
+  if (loading) return <Loadings />;
   return (
     <div className="overflow-x-auto w-full">
       <div className="flex gap-3 items-center my-4">
@@ -47,7 +41,6 @@ const AllToys = () => {
           name="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          
         />
         <button className="btn btn-circle btn-outline" onClick={handleSearch}>
           <BiSearch />
@@ -79,6 +72,6 @@ const AllToys = () => {
       )}
     </div>
   );
-}
+};
 
-export default AllToys
+export default AllToys;

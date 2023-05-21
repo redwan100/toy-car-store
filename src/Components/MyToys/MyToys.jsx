@@ -1,73 +1,68 @@
-import React, { useContext, useEffect, useState } from 'react'
-import { AuthContext } from '../../Context/AuthProvider';
-import MyToysCard from '../MyToysCard';
-import Loadings from '../../Pages/Shared/Loadings.jsx'
-import useDynamicTitle from '../../Hooks/useHook';
+import React, { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../Context/AuthProvider";
+import MyToysCard from "../MyToysCard";
+import Loadings from "../../Pages/Shared/Loadings.jsx";
+import useDynamicTitle from "../../Hooks/useHook";
 import Swal from "sweetalert2";
 const MyToys = () => {
-  useDynamicTitle('My Toys');
+  useDynamicTitle("My Toys");
 
-    const [loading, setLoading] = useState(true)
-      const [toys, setToys] = useState([]);
-      const {user} = useContext(AuthContext)
-  const [showModal, setShowModal] = useState(false)
-  const [products, setProducts] = useState({})
+  const [loading, setLoading] = useState(true);
+  const [toys, setToys] = useState([]);
+  const { user } = useContext(AuthContext);
+  const [showModal, setShowModal] = useState(false);
+  const [products, setProducts] = useState({});
 
-  const [update, setUpdate] = useState(false)
-      useEffect(() => {
-        fetch(`http://localhost:5000/allToys?email=${user?.email}`)
+  const [update, setUpdate] = useState(false);
+  useEffect(() => {
+    fetch(`https://cartoystor.vercel.app/allToys?email=${user?.email}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setToys(data);
+        setLoading(false);
+      })
+      .catch((err) => console.error(err));
+  }, [user, update]);
+
+  const handleModal = (product, _id) => {
+    setProducts(product);
+    setShowModal(!showModal);
+    setUpdate(!update);
+  };
+
+  useEffect(() => {
+    setUpdate(true);
+  }, [update]);
+
+  /* ------------------------ DELETE USER DATA FUNCTION ----------------------- */
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`https://cartoystor.vercel.app/deleteToy/${id}`, {
+          method: "DELETE",
+        })
           .then((res) => res.json())
           .then((data) => {
-            setToys(data);
-            setLoading(false)
-          })
-          .catch((err) => console.error(err));
-      }, [user, update]);
-
-
-    const handleModal = (product, _id) =>{
-      setProducts(product)   
-        setShowModal(!showModal)
-      setUpdate(!update)
-    }
-
-
-    useEffect(()=>{
-      setUpdate(true)
-    },[update])
-     
-      /* ------------------------ DELETE USER DATA FUNCTION ----------------------- */
-      const handleDelete = (id) => {
-         Swal.fire({
-           title: "Are you sure?",
-           text: "You won't be able to revert this!",
-           icon: "warning",
-           showCancelButton: true,
-           confirmButtonColor: "#3085d6",
-           cancelButtonColor: "#d33",
-           confirmButtonText: "Yes, delete it!",
-         }).then((result) => {
-           if (result.isConfirmed) {
-            fetch(`http://localhost:5000/deleteToy/${id}`, {
-              method: "DELETE",
-            })
-              .then((res) => res.json())
-              .then((data) => {
-                if (data.deletedCount > 0) {
-                  const remaining = toys.filter((toy) => toy._id !== id);
-                  setToys(remaining);
-                }
-              });
-             Swal.fire("Deleted!", "Your file has been deleted.", "success");
-           }
-         });
-
-        
-
+            if (data.deletedCount > 0) {
+              const remaining = toys.filter((toy) => toy._id !== id);
+              setToys(remaining);
+            }
+          });
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
       }
+    });
+  };
 
-      /* ---------------------------- CHECKING LOADING ---------------------------- */
-      if(loading) return <Loadings />
+  /* ---------------------------- CHECKING LOADING ---------------------------- */
+  if (loading) return <Loadings />;
 
   return (
     <div>
@@ -92,7 +87,7 @@ const MyToys = () => {
               toy={toy}
               handleDelete={handleDelete}
               handleModal={handleModal}
-             showModal={showModal}
+              showModal={showModal}
               products={products}
             />
           ))}
@@ -100,6 +95,6 @@ const MyToys = () => {
       </table>
     </div>
   );
-}
+};
 
-export default MyToys
+export default MyToys;

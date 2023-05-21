@@ -1,43 +1,45 @@
-import React, { useEffect, useState } from 'react'
-import SectionTitle from '../Shared/SectionTitle';
+import React, { useEffect, useState } from "react";
+import SectionTitle from "../Shared/SectionTitle";
 import AOS from "aos";
 import "aos/dist/aos.css";
-
-
-
+import Loadings from "../Shared/Loadings";
 
 const Gallery = () => {
-const [galleries, setGalleries] = useState([])
-const [selected, setSelected] = useState('new')
-const [btns, setBtns] = useState([])
+  const [loading, setLoading] = useState(true);
+  const [galleries, setGalleries] = useState([]);
+  const [selected, setSelected] = useState("new");
+  const [btns, setBtns] = useState([]);
   useEffect(() => {
-
-    fetch(`http://localhost:5000/gallery/${selected}`)
+    fetch(`https://cartoystor.vercel.app/gallery/${selected}`)
       .then((response) => response.json())
-      .then((data) => setGalleries(data))
+      .then((data) => {
+        setGalleries(data);
+        setLoading(false);
+      })
       .catch((error) => console.log("error", error));
 
-
-      /* ---------------------------- LOAD BUTTON DATA ---------------------------- */
-    fetch(`http://localhost:5000/gallerybtns`)
+    /* ---------------------------- LOAD BUTTON DATA ---------------------------- */
+    fetch(`https://cartoystor.vercel.app/gallerybtns`)
       .then((response) => response.json())
-      .then((data) => setBtns(data))
+      .then((data) => {
+        setBtns(data);
+        setLoading(false);
+      })
       .catch((error) => console.log("error", error));
-
 
     AOS.init();
   }, [selected]);
 
+  const btnArr = btns.map((p) => p.group);
+  const btn = [...new Set(btnArr)];
 
-const btnArr = btns.map(p => p.group)
- const btn = [...new Set(btnArr)]
+  const handleGallery = (text) => {
+    setSelected(text);
+  };
 
- const handleGallery = (text) => {
-  setSelected(text)
- }
-
-
- console.log(btn, selected);
+  if (loading) {
+    return <Loadings />;
+  }
 
   return (
     <>
@@ -46,7 +48,11 @@ const btnArr = btns.map(p => p.group)
       </div>
       <div className="text-center mb-6 space-x-3">
         {btn.map((b, i) => (
-          <button className={`btn ${selected === b && 'bg-red-500'}`} key={i} onClick={() => handleGallery(b)}>
+          <button
+            className={`btn ${selected === b && "bg-red-500"}`}
+            key={i}
+            onClick={() => handleGallery(b)}
+          >
             {b}
           </button>
         ))}
@@ -69,6 +75,6 @@ const btnArr = btns.map(p => p.group)
       </div>
     </>
   );
-}
+};
 
-export default Gallery
+export default Gallery;
