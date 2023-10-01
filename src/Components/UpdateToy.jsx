@@ -2,7 +2,7 @@ import React from "react";
 import { useLoaderData } from "react-router-dom";
 import SectionTitle from "../Pages/Shared/SectionTitle";
 import Swal from "sweetalert2";
-
+import { MdClose } from "react-icons/md";
 const UpdateToy = ({ handleModal, products }) => {
   const { _id, price, quantity, description } = products;
 
@@ -38,9 +38,8 @@ const UpdateToy = ({ handleModal, products }) => {
             showConfirmButton: false,
             timer: 1000,
           });
-          setTimeout(() => {
-            handleModal();
-          }, 1000);
+
+          handleModal();
         }
       });
   };
@@ -51,7 +50,12 @@ const UpdateToy = ({ handleModal, products }) => {
     >
       <div className="w-full max-w-md shadow-2xl bg-base-100 gradient-thin relative">
         <div className="mt-8">
-          {" "}
+          <span
+            onClick={handleModal}
+            className="absolute -top-4 -right-2 bg-red-500 w-8 h-8 rounded-full grid place-content-center text-zinc-50 cursor-pointer"
+          >
+            <MdClose />
+          </span>{" "}
           <SectionTitle title="UPDATED" />
         </div>
         <form className="card-body" onSubmit={handleUpdate}>

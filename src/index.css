@@ -1,50 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-
-
-.gradient{
-    border-width: 4px;
-    border-style: solid ;
-    border-image: linear-gradient(190deg, #05f07a, #09ccd3);
-    border-image-slice: 1;
-    box-sizing: content-box;
-}
-.gradient-thin{
-    border-width: 3px;
-    border-style: solid ;
-    border-image: linear-gradient(190deg, #05f07a, #09ccd3);
-    border-image-slice: 1;
-    box-sizing: content-box;
+body {
+  @apply bg-neutral-50;
 }
 
+.gradient {
+  border-width: 4px;
+  border-style: solid;
+  border-image: linear-gradient(190deg, #05f07a, #09ccd3);
+  border-image-slice: 1;
+  box-sizing: content-box;
+}
+.gradient-thin {
+  border-width: 3px;
+  border-style: solid;
+  border-image: linear-gradient(190deg, #05f07a, #09ccd3);
+  border-image-slice: 1;
+  box-sizing: content-box;
+}
 
 .gradient-text {
-  background: -webkit-linear-gradient(#02ed78, #068084);
+  background: -webkit-linear-gradient(#1d1e1daf, #cdcdcd);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
 }
 
-
-.bg-gradient{
+.bg-gradient {
   background: linear-gradient(190deg, #05f07a, #09ccd3);
-
 }
-.bg-gradient-shade{
+.bg-gradient-shade {
   background: linear-gradient(-190deg, #1bf18671, #09ccd36b);
-
 }
-body{
-  font-family: 'Poppins', sans-serif;
-}
-
-.faq{
-  @apply  p-2 rounded-md shadow-md
+body {
+  font-family: "Poppins", sans-serif;
 }
 
-.faq-title{
-  @apply text-xl font-semibold cursor-pointer p-2
+.faq {
+  @apply p-2 rounded-md shadow-md;
+}
+
+.faq-title {
+  @apply text-xl font-semibold cursor-pointer p-2;
 }

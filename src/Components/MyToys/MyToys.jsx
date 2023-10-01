@@ -65,8 +65,8 @@ const MyToys = () => {
   if (loading) return <Loadings />;
 
   return (
-    <div>
-      <table className="table w-full">
+    <div className="overflow-x-auto">
+      <table className="table w-full ">
         {/* head */}
         <thead>
           <tr>

@@ -1,28 +1,38 @@
-import {useLoaderData, Link, useNavigate} from 'react-router-dom'
-import Rating from '../../Pages/Shared/Rating';
+import { useLoaderData, Link, useNavigate } from "react-router-dom";
+import Rating from "../../Pages/Shared/Rating";
 
 const ToyDetails = () => {
- const { sellerName, sellerEmail, toyName, photoUrl, price, rating, quantity,description} = useLoaderData()
-
+  const {
+    sellerName,
+    sellerEmail,
+    toyName,
+    photoUrl,
+    price,
+    rating,
+    quantity,
+    description,
+  } = useLoaderData();
 
   const navigate = useNavigate();
 
   const goBack = () => {
-    navigate(-1,{
-      replace:true
+    navigate(-1, {
+      replace: true,
     });
   };
 
-  
-
   return (
     <>
-      <div className="card lg:card-side shadow-xl gradient-thin my-8">
-        <figure>
-          <img src={photoUrl} alt="Album" className='h-full'/>
+      <div className="grid md:grid-cols-2 shadow-md bg-white border border-zinc-200 my-8 rounded-md overflow-hidden">
+        <figure className="max-h-[28rem] h-full w-full">
+          <img
+            src={photoUrl}
+            alt="Album"
+            className=" w-full h-full object-cover"
+          />
         </figure>
-        <div className="card-body space-y-4">
-          <div className='space-y-1'>
+        <div className=" p-6">
+          <div className="space-y-1">
             <h2 className="card-title text-gray-800">Toy Name: {toyName}</h2>
             <h2 className="card-title text-gray-800">
               Seller Name: {sellerName}
@@ -52,6 +62,6 @@ const ToyDetails = () => {
       </div>
     </>
   );
-}
+};
 
-export default ToyDetails
+export default ToyDetails;

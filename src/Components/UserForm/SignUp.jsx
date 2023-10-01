@@ -2,7 +2,7 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthProvider";
 import Lottie from "lottie-react";
-import signInImg from '../../../public/login.json'
+import signInImg from "../../../public/login.json";
 import { updateProfile } from "firebase/auth";
 
 const SignUp = () => {
@@ -23,11 +23,10 @@ const SignUp = () => {
         const createdUser = result.user;
         console.log(createdUser);
         form.reset();
-        updateUserData(result.user,username, photoUrl)
+        updateUserData(result.user, username, photoUrl);
       })
       .catch((error) => setError(error.message));
   };
-
 
   const updateUserData = (user, name, photo) => {
     updateProfile(user, {
@@ -53,7 +52,7 @@ const SignUp = () => {
             className="w-full h-full mx-auto"
           />
         </div>
-        <div className="card shadow-2xl  bg-gradient-shade gradient">
+        <div className="card shadow-2xl  bg-gradient-shade gradient max-w-screen-xl w-full">
           <h1 className="text-5xl font-bold text-center py-4">Sign Up!</h1>
           <form onSubmit={handleSignUp}>
             <div className="card-body">
@@ -106,7 +105,9 @@ const SignUp = () => {
               </div>
 
               <div className="form-control mt-6">
-                <button className="bg-gradient py-2 font-bold text-xl">Register</button>
+                <button className="bg-gradient py-2 font-bold text-xl">
+                  Register
+                </button>
               </div>
               {error && <p className="text-error font-medium">{error}</p>}
             </div>

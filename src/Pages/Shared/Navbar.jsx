@@ -64,9 +64,7 @@ const Navbar = () => {
      .catch((err) => console.log(err));
  };
   return (
-    <div
-      className="navbar mx-auto lg:w-[90%]"
-    >
+    <div className="navbar mx-auto lg:w-[90%]">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -92,7 +90,7 @@ const Navbar = () => {
             {Links()}
           </ul>
         </div>
-        <Link to="/" className="btn btn-ghost normal-case text-xl">
+        <Link to="/" className={`btn btn-ghost normal-case text-xl ${(isActive) => isActive && 'text-red'}`}>
           <img src={brand} alt="" className="w-8" />
           <span>TURBO</span>
         </Link>

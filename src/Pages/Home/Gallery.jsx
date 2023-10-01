@@ -60,7 +60,7 @@ const Gallery = () => {
       <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {galleries.map((item, i) => (
           <div
-            className="gradient-thin"
+            className=""
             key={i}
             data-aos="fade-down"
             data-aos-duration="1000"
@@ -69,7 +69,11 @@ const Gallery = () => {
             data-aos-once="false"
             data-aos-anchor-placement="top-center"
           >
-            <img src={item.img} alt="" className="w-full h-full object-cover" />
+            <img
+              src={item.img}
+              alt=""
+              className="w-full h-full object-cover rounded-md shadow-md"
+            />
           </div>
         ))}
       </div>

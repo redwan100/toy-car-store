@@ -1,11 +1,16 @@
-import React from 'react'
-import {Link} from 'react-router-dom'
-import brand from '../../assets/brand.png'
-import {FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter} from 'react-icons/fa'
+import React from "react";
+import { Link } from "react-router-dom";
+import brand from "../../assets/brand.png";
+import {
+  FaFacebookF,
+  FaInstagram,
+  FaLinkedinIn,
+  FaTwitter,
+} from "react-icons/fa";
 const Footer = () => {
   return (
-    <div>
-      <footer className="footer p-10 bg-neutral text-neutral-content">
+    <div className="bg-neutral text-neutral-content">
+      <footer className="footer p-10  container mx-auto lg:w-[90%]">
         <div>
           <span className="footer-title">Our Brand</span>
           <Link to={"/"} className="link link-hover">
@@ -49,6 +54,6 @@ const Footer = () => {
       </p>
     </div>
   );
-}
+};
 
-export default Footer
+export default Footer;
